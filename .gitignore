@@ -62,4 +62,5 @@ venv.bak/
 .mypy_cache/
 
 # My additions
+/.idea
 private*
