@@ -1,4 +1,4 @@
-from undyingkingdoms.models.bases import GameState, db
+from tenacity.model.base import GameState, db
 from werkzeug.security import generate_password_hash, check_password_hash
 
 

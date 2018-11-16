@@ -21,11 +21,6 @@ if 'liveweb' in socket.gethostname():
 
 db = SQLAlchemy(app)
 
-if os.environ.get("FLASK_CLEAN") == "true" and os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-    db.drop_all()
-    db.create_all()
-    print("Rebuilding database")
-
 csrf = CSRFProtect(app)
 csrf.init_app(app)
 
@@ -38,14 +33,21 @@ def not_found(error):
     return render_template('404.html'), 404
 
 
-from tenacity import model
+def import_models():
+    from tenacity.model.account import Account
+    from tenacity.model.issue import Issue
 
 
-# noinspection PyUnresolvedReferences
 def import_routes():
     import tenacity.route.question
     import tenacity.route.reset_schema
     import tenacity.route.index
 
 
+import_models()
 import_routes()
+
+if os.environ.get("FLASK_CLEAN") == "true" and os.environ.get("WERKZEUG_RUN_MAIN") == "true":
+    db.drop_all()
+    db.create_all()
+    print("Rebuilding database")
