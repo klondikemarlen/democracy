@@ -36,6 +36,9 @@ def not_found(error):
 def import_models():
     from tenacity.model.account import Account
     from tenacity.model.issue import Issue
+    from tenacity.model.answer import Answer
+    from tenacity.model.issue import Issue
+    from tenacity.model.question import Question
 
 
 def import_routes():
