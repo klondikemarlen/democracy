@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectre Social Starter </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css"> </head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+	<body>
+		<div ng-app="tenacityApp" ng-controller="tenacityCtrl">
+    <header class="navbar bg-primary">
+        <section class="navbar-section"><a href="..." class="navbar-brand mr-2"><span class="text-light">Tenacity</span></a><a href="index.html" class="btn btn-link text-light"><span class="text-light">Issues</span></a><a href="todo_list.html"
+                class="btn btn-link text-light"><span class="text-light">Questions</span></a></section>
+        <section class="navbar-section">
+            <div class="input-group input-inline"><input type="text" placeholder="search" class="form-input" /><button class="btn input-group-btn btn-success">Search</button></div>
+        </section>
+    </header>
+    <section class="sl-body">
+        <div class="container grid-lg">
+            <div class="card">
+                <ul class="tab tab-block">
+                    <li class="tab-item active"><a href="#">Create a new Issue</a></li>
+                    <li class="tab-item"><a href="todo_list.html">Vote on an Issue</a></li>
+                </ul>
+                <div class="card-header">
+                    <div class="card-title h5">Create an Issue </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group"><label for="input-example-1" class="form-label">Title</label><input type="text" id="input-example-1" placeholder="Name" class="form-input" /></div>
+                    <div class="form-group"><label for="input-example-2" class="form-label">Message</label><textarea ng-model="atest" id="input-example-2" placeholder="Textarea" rows="3" class="form-input"></textarea></div>
+                    <div class="form-group"><label for="input-example-3" class="form-label">Color</label><input id="input-example-3" type="color" value="#41f4b8" placeholder="..." class="form-input" /></div><button class="btn btn-primary input-group-btn btn-lg">Create</button></div>
+            </div>
+        </div>
+    </section>
+    <div data-content="All Issues" class="divider text-center"> </div>
+    <section class="all-notes">
+        <div class="container grid-lg">
+            <div class="columns">
+                <div class="column col-4 col-xs-12 col-sm-12">
+                    <div class="card bg-secondary">
+                        <div class="card-header">
+                            <div class="card-title h5">My First Issue </div>
+                        </div>
+			<div ng-bind="xtest" class="card-body">{{test}}</div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-block"><button class="btn btn-primary">Edit</button><button class="btn">Delete</button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column col-4 col-xs-12 col-sm-12">
+                    <div class="card bg-success">
+                        <div class="card-header">
+                            <div class="card-title h5">My Second Issue </div>
+                        </div>
+                        <div class="card-body">To make a contribution to the world by making tools for the mind that advance humankind. </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-block"><button class="btn btn-primary">Edit</button><button class="btn">Delete</button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column col-4 col-xs-12 col-sm-12">
+                    <div class="card bg-warning">
+                        <div class="card-header">
+                            <div class="card-title h5">My Third Issue </div>
+                        </div>
+                        <div class="card-body">To make a contribution to the world by making tools for the mind that advance humankind. </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-block"><button class="btn btn-primary">Edit</button><button class="btn">Delete</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column col-4 col-xs-12 col-sm-12">
+                    <div class="card bg-gray">
+                        <div class="card-header">
+                            <div class="card-title h5">My First Issue </div>
+                        </div>
+                        <div class="card-body">To make a contribution to the world by making tools for the mind that advance humankind. </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-block"><button class="btn btn-primary">Edit</button><button class="btn">Delete</button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column col-4 col-xs-12 col-sm-12">
+                    <div class="card bg-dark">
+                        <div class="card-header">
+                            <div class="card-title h5">My Second Issue </div>
+                        </div>
+                        <div class="card-body">To make a contribution to the world by making tools for the mind that advance humankind. </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-block"><button class="btn btn-primary">Edit</button><button class="btn">Delete</button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column col-4 col-xs-12 col-sm-12">
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            <div class="card-title h5">My Third Issue </div>
+                        </div>
+                        <div class="card-body">To make a contribution to the world by making tools for the mind that advance humankind. </div>
+                        <div class="card-footer">
+                            <div class="btn-group btn-group-block"><button class="btn btn-primary">Edit</button><button class="btn">Delete</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer"></footer>
+		</div>
+		<script>
+var app = angular.module('tenacityApp', []);
+app.controller('tenacityCtrl', function($scope, $http) {
+    $http.get("http://democracy.pythonanywhere.com/question?id=1")
+    .then(function(response) {
+        $scope.test = response.data;
+    });
+});
+</script>
+</body>
+
+</html>
