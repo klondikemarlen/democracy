@@ -35,7 +35,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group"><label for="input-example-1" class="form-label">Title</label><input type="text" id="input-example-1" placeholder="Name" class="form-input" /></div>
-                    <div class="form-group"><label for="input-example-2" class="form-label">Message</label><textarea ng-model="atest" id="input-example-2" placeholder="Textarea" rows="3" class="form-input"></textarea></div>
+                    <div class="form-group"><label for="input-example-2" class="form-label">Message</label><textarea id="input-example-2" placeholder="Textarea" rows="3" class="form-input"></textarea></div>
                     <div class="form-group"><label for="input-example-3" class="form-label">Color</label><input id="input-example-3" type="color" value="#41f4b8" placeholder="..." class="form-input" /></div><button class="btn btn-primary input-group-btn btn-lg">Create</button></div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                         <div class="card-header">
                             <div class="card-title h5">My First Issue </div>
                         </div>
-			<div ng-bind="xtest" class="card-body">{{test}}</div>
+			<div class="card-body">{{test}}</div>
                         <div class="card-footer">
                             <div class="btn-group btn-group-block"><button class="btn btn-primary">Edit</button><button class="btn">Delete</button></div>
                         </div>
@@ -106,7 +106,7 @@
                         <div class="card-header">
                             <div class="card-title h5">My Third Issue </div>
                         </div>
-                        <div class="card-body">To make a contribution to the world by making tools for the mind that advance humankind. </div>
+			<div class="card-body" ng-bind="firstData"></div>
                         <div class="card-footer">
                             <div class="btn-group btn-group-block"><button class="btn btn-primary">Edit</button><button class="btn">Delete</button></div>
                         </div>
@@ -120,9 +120,9 @@
 		<script>
 var app = angular.module('tenacityApp', []);
 app.controller('tenacityCtrl', function($scope, $http) {
-    $http.get("http://democracy.pythonanywhere.com/question?id=1")
+    $http.get("/question?id=1")
     .then(function(response) {
-        $scope.test = response.data;
+        $scope.firstData = response.data.id;
     });
 });
 </script>
