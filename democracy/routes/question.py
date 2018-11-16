@@ -2,7 +2,7 @@ import flask
 from democracy import app
 
 
-@app.route('/question/<id>', methods=['GET', 'POST'])
+@app.route('/question', methods=['GET', 'POST'])
 def command(id=None):
     testing = True  # True/False
     if testing:

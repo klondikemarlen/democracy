@@ -16,4 +16,4 @@ if __name__ == "__main__":
             '"CREATE DATABASE IF NOT EXISTS {name} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"'.format(
                 name=private_config.DATABASE_NAME))
         print("Database recreated!")
-    os.system("export FLASK_APP=undyingkingdoms && export FLASK_DEBUG=true && python3 -m flask run")
+    os.system("export FLASK_APP=democracy && export FLASK_DEBUG=true && python3 -m flask run")

@@ -19,7 +19,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 if 'liveweb' in socket.gethostname():
     app.config['SQLALCHEMY_DATABASE_URI'] = private_config.SERVER_DATABASE_URI
 
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
 csrf = CSRFProtect(app)
 csrf.init_app(app)
