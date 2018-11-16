@@ -6,7 +6,7 @@ from tenacity.command import question as command_question
 
 @app.route('/question', methods=['GET', 'POST'])
 def question():
-    testing = True  # True/False
+    testing = False  # True/False
     if testing:
         print('request is:', repr(flask.request))
         print('request data:', repr(flask.request.data))
@@ -14,8 +14,7 @@ def question():
         print('request view_args:', repr(flask.request.view_args))
         print('request args:', repr(flask.request.args))
         print('cmd is:', repr(id))
-
-    print(dir(command_question))
+        print(dir(command_question))
 
     data = {}
     for key in flask.request.args.keys():

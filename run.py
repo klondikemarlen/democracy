@@ -5,6 +5,7 @@ import private_config
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", help="Delete the database.", action='store_true')
+    parser.add_argument("-c", help="Refresh the database schema.", action='store_true')
     args = parser.parse_args()
 
     if args.d:
@@ -16,4 +17,9 @@ if __name__ == "__main__":
             '"CREATE DATABASE IF NOT EXISTS {name} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"'.format(
                 name=private_config.DATABASE_NAME))
         print("Database recreated!")
-    os.system("export FLASK_APP=tenacity && export FLASK_DEBUG=true && python3 -m flask run")
+
+    if args.c:
+        args.c = "export FLASK_CLEAN=true &&"
+    else:
+        args.c = ""
+    os.system("export FLASK_APP=tenacity && export FLASK_DEBUG=true && {c}python3 -m flask run".format(c=args.c))
