@@ -34,12 +34,12 @@ def not_found(error):
     return render_template('404.html'), 404
 
 
-from democracy import models
+from tenacity import model
 
 
 # noinspection PyUnresolvedReferences
 def import_routes():
-    import democracy.routes.question
+    import tenacity.route.question
 
 
 import_routes()
