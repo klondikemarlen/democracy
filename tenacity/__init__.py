@@ -45,6 +45,7 @@ from tenacity import model
 def import_routes():
     import tenacity.route.question
     import tenacity.route.reset_schema
+    import tenacity.route.index
 
 
 import_routes()
