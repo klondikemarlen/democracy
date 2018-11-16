@@ -1,8 +1,8 @@
 import setuptools
 
 setuptools.setup(
-    name="democracy",
-    packages=["democracy"],
+    name="tenacity",
+    packages=["tenacity"],
     include_package_data=True,
     install_requires=[
         'flask',

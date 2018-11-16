@@ -8,7 +8,7 @@ from flask_wtf.csrf import CSRFProtect
 
 import private_config
 
-UPLOAD_FOLDER = 'democracy/static/uploads/'
+UPLOAD_FOLDER = 'tenacity/static/uploads/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
