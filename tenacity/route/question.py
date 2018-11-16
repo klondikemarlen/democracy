@@ -19,6 +19,7 @@ def question():
 
     data = {}
     for key in flask.request.args.keys():
+        # import pdb;pdb.set_trace()
         try:
             data[key] = getattr(command_question, key)(flask.request.args[key])
         except AttributeError:
