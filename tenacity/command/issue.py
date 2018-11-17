@@ -25,7 +25,6 @@ def id(value):
             id=option.id,
             text=option.text,
             ))
-        print(options_data)
 
         data['questions'].append(dict(
             id=question.id,
