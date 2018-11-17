@@ -4,6 +4,7 @@ import socket
 from flask import Flask, render_template
 from flask_json import FlaskJSON
 from flask_sqlalchemy import SQLAlchemy
+import flask_sslify
 # from flask_wtf.csrf import CSRFProtect
 
 import private_config
@@ -20,6 +21,7 @@ if 'liveweb' in socket.gethostname():
     app.config['SQLALCHEMY_DATABASE_URI'] = private_config.SERVER_DATABASE_URI
 
 db = SQLAlchemy(app)
+sslify = flask_sslify.SSLify(app)
 
 # csrf = CSRFProtect(app)
 # csrf.init_app(app)
