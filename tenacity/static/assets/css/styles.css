@@ -1,0 +1,126 @@
+#ia1aro{
+  text-align:center;
+}
+#ii9yhx1{
+  margin-top:17px;
+  margin-right:0px;
+  margin-bottom:14px;
+  margin-left:0px;
+}
+.navbar-section{
+  padding-top:5px;
+  padding-right:20px;
+  padding-bottom:5px;
+  padding-left:20px;
+}
+.sl-body{
+  margin-top:25px;
+  margin-right:0px;
+  margin-bottom:60px;
+  margin-left:0px;
+}
+.btn.btn-primary.input-group-btn.btn-lg{
+  margin-top:12px;
+  margin-right:0px;
+  margin-bottom:0px;
+  margin-left:0px;
+}
+.divider.text-center{
+  margin-top:49px;
+  margin-right:0px;
+  margin-bottom:16px;
+  margin-left:0px;
+}
+.columns{
+  margin-top:12px;
+  margin-right:-8px;
+  margin-bottom:12px;
+  margin-left:-8px;
+}
+.panel-title.h6{
+  font-size:30px;
+}
+.btn.btn-primary.input-group-btn{
+  margin-top:10px;
+  margin-right:0px;
+  margin-bottom:0px;
+  margin-left:0px;
+}
+.panel.bg-teal{
+  background-color:rgb(65, 244, 184);
+}
+.text-light{
+  font-size:24px;
+  letter-spacing:1px;
+  font-family:Helvetica, serif;
+  font-weight:700;
+}
+.navbar-brand.mr-2{
+  font-family:"Courier New", Courier, monospace;
+  letter-spacing:5px;
+}
+.footer{
+  margin-top:30px;
+  margin-right:0px;
+  margin-bottom:15px;
+  margin-left:0px;
+}
+.c60084{
+  padding-top:10px;
+  padding-right:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+}
+.c60103{
+  padding-top:10px;
+  padding-right:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+}
+.gjs-row{
+  display:table;
+  padding-top:10px;
+  padding-right:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+  width:100%;
+}
+.gjs-cell{
+  width:8%;
+  display:table-cell;
+  height:75px;
+}
+.card-title.h5{
+  text-align:center;
+}
+.card-title.h5.final-card-title{
+  font-weight:900;
+  line-height:60px;
+}
+@media (max-width: 768px){
+  .gjs-cell{
+	width:100%;
+	display:block;
+  }
+  .gjs-cell30{
+	width:100%;
+	display:block;
+  }
+  .gjs-cell70{
+	width:100%;
+	display:block;
+  }
+  .gjs-cell{
+	width:100%;
+	display:block;
+  }
+  .gjs-cell30{
+	width:100%;
+	display:block;
+  }
+  .gjs-cell70{
+	width:100%;
+	display:block;
+  }
+}
+
