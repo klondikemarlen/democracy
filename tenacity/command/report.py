@@ -1,4 +1,5 @@
 import tenacity.model.issue as model_issue
+import tenacity.model.response as model_response
 import tenacity.model.question as model_question
 import tenacity.model.option as model_option
 
@@ -12,14 +13,14 @@ def issue_id(value):
     for question in issue.questions:
         options_data = []
         for option in question.options:
+
+            response_count = model_response.Response.query.filter_by(option_id=option.id).count()
+
             options_data.append(dict(
             id=option.id,
             text=option.text,
+            response_count=response_count
             ))
-
-        response_data = []
-        for response in question.responses:
-            pass
 
         question_data.append(dict(
             id=question.id,
@@ -27,7 +28,6 @@ def issue_id(value):
             issue_id=question.issue_id,
             answer_id=question.answer_id,
             options=options_data,
-            responses=response_data,
         ))
 
     # yes_votes = sum([1 if vote.cast is not None else 0 for vote in issue.votes])
