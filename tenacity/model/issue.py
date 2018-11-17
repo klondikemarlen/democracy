@@ -6,3 +6,6 @@ class Issue(GameState):
     description = db.Column(db.String(500), nullable=False)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
+
+    questions = db.relationship("Question")
+    votes = db.relationship("Vote")

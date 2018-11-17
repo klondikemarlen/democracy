@@ -6,3 +6,6 @@ class Question(GameState):
 
     issue_id = db.Column(db.Integer, db.ForeignKey('issue.id'), nullable=True)
     answer_id = db.Column(db.Integer, db.ForeignKey('answer.id'), nullable=True)
+
+    options = db.relationship("Option")
+    responses = db.relationship("Response")
