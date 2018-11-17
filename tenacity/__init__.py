@@ -56,6 +56,7 @@ def import_routes():
     import tenacity.route.icon
     import tenacity.route.task
     import tenacity.route.report
+    import tenacity.route.record
 
 
 import_models()
