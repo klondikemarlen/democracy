@@ -4,7 +4,7 @@ import socket
 from flask import Flask, render_template
 from flask_json import FlaskJSON
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf.csrf import CSRFProtect
+# from flask_wtf.csrf import CSRFProtect
 
 import private_config
 
@@ -21,8 +21,8 @@ if 'liveweb' in socket.gethostname():
 
 db = SQLAlchemy(app)
 
-csrf = CSRFProtect(app)
-csrf.init_app(app)
+# csrf = CSRFProtect(app)
+# csrf.init_app(app)
 
 json = FlaskJSON(app)
 
