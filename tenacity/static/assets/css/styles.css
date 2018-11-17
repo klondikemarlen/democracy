@@ -124,3 +124,24 @@
   }
 }
 
+
+
+.cake-sprite {
+  background: url("/static/images/cake.png") repeat-x;
+  font-size: 0;
+  height: 650px;
+  line-height: 0;
+  overflow: hidden;
+  text-indent: -999em;
+  width: 650px;
+  margin: 0 auto;
+}
+
+.cake-sprite-rating {
+    background: url("/static/images/cake.png") repeat-x;
+    background-position: 0 100%;
+    float: left;
+    width: 650px;
+    display:block;
+  }
+

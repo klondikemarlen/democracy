@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vote on {{issue.title}}</title>
+    <title>Tasks to complete this issue</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
@@ -30,19 +30,6 @@
 </header>
 
 
-<header class="navbar bg-primary">
-  <section class="navbar-section">
-	<a href="index.html" class="navbar-brand mr-2"><span class="text-light">Spectre Keep</span></a>
-	<a href="index.html" class="btn btn-link text-light"><span class="text-light">Notes</span></a>
-	<a href="todo_list.html" class="btn btn-link text-light"><span class="text-light">ToDo</span></a>
-  </section>
-  <section class="navbar-section">
-	<div class="input-group input-inline">
-	  <input type="text" placeholder="search" class="form-input"/>
-	  <button class="btn input-group-btn btn-success">Search</button>
-	</div>
-  </section>
-</header>
 <section class="sl-body">
   <div class="container grid-lg">
 	<div class="panel bg-gray">
@@ -51,7 +38,7 @@
 		  <div class="gjs-cell">
 		  </div>
 		  <div class="gjs-cell">
-			<img src="/static/assets/images/cake.jpg" class="c3846"/>
+			  <div class="cake-sprite"><span style="margin-top: {{ 100- percentage }}%; height:{{ percentage }}%" class="cake-sprite-rating"></span></div>
 		  </div>
 		  <div class="gjs-cell">
 		  </div>
@@ -69,23 +56,16 @@
 	  </div>
 	  <div class="panel-body">
 
-		<div ng-repeat="t in issue.tasks | orderBy : 'id'"  class="form-group">
+		<div ng-repeat="t in issue | orderBy : 'id'"  class="form-group">
 		  <div class="input-group">
-			<label class="form-checkbox"><input type="checkbox"/><i class="form-icon">
+			<label class="form-checkbox"><input ng-click="myFunction()" type="checkbox" ng-model="tenacityTask"/><i class="form-icon">
 			  </i></label>
 			  <input type="text" value=" {{t.text}}" class="form-input"/>
 		  </div>
 		</div>
-
-		<div class="form-group">
-		  <input id="input-example-15" type="color" value="#41f4b8" class="form-input"/>
-		</div>
-		<div class="form-group">
-		  <button class="btn btn-block btn-outline">Add More</button>
-		</div>
 	  </div>
 	  <div class="panel-footer centered">
-		<button class="btn btn-primary input-group-btn btn-lg">Complete tasks resolve issue</button>
+		<button class="btn btn-primary input-group-btn btn-lg">Complete tasks and resolve issue</button>
 	  </div>
 	</div>
   </div>
@@ -98,10 +78,16 @@
 		<script>
 var app = angular.module('tenacityApp', []);
 app.controller('tenacityCtrl', function($scope, $http) {
-    $http.get("/tasks?id=1")
+    $http.get("/task?issue_id=1")
     .then(function(response) {
-        $scope.issue = response.data.id;
+        $scope.issue = response.data.issue_id;
     });
+
+    $scope.myFunction = function() {
+       $scope.percentage  = document.querySelectorAll('input[type="checkbox"]:checked').length/document.querySelectorAll('input[type="checkbox"]').length * 100;
+
+
+    }
 });
 </script>
 </body>
