@@ -52,6 +52,7 @@ def import_routes():
     import tenacity.route.index
     import tenacity.route.login
     import tenacity.route.vote
+    import tenacity.route.issue
 
 
 import_models()
