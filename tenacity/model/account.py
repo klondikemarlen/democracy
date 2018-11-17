@@ -6,3 +6,5 @@ class Account(GameState):
     username = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False, unique=True)
     password_hash = db.Column(db.String(192), nullable=False)
+
+    # rank/vote multiplier
