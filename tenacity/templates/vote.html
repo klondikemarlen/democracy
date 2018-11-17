@@ -36,74 +36,15 @@
 <section class="all-notes">
   <div class="container grid-lg">
 	<div class="columns">
-	  <div class="column col-4 col-xs-12 col-sm-12">
+	  <div ng-repeat="q in issue.questions | orderBy : 'id'" class="column col-4 col-xs-12 col-sm-12">
 		<div class="card bg-secondary">
 		  <div class="card-header">
-			<div class="card-title h5">Will fracking cause earthquakes?
-			  <br/>
-			</div>
+			  <div class="card-title h5">{{ q.text }}<br/></div>
 		  </div>
-		  <div class="card-body">Please indicate your answer below
-			<br/>
-		  </div>
+		  <div class="card-body">Please indicate your answer below<br/></div>
 		  <div class="card-footer">
 			<div class="btn-group btn-group-block">
-			  <button class="btn btn-primary">No, that's silly.</button>
-			  <button class="btn btn-primary">Yes, it's happened elsewhere.</button>
-			  <button class="btn btn-primary">I'm unsure.</button>
-			  <button class="btn">Abstain</button>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  <div class="column col-4 col-xs-12 col-sm-12">
-		<div class="card bg-secondary">
-		  <div class="card-header">
-			<div class="card-title h5">Will fracking cause earthquakes?
-			  <br/>
-			</div>
-		  </div>
-		  <div class="card-body">Please indicate your answer below
-			<br/>
-		  </div>
-		  <div class="card-footer">
-			<div class="btn-group btn-group-block">
-			  <button class="btn btn-primary">No, that's silly.</button>
-			  <button class="btn btn-primary">Yes, it's happened elsewhere.</button>
-			  <button class="btn btn-primary">I'm unsure.</button>
-			  <button class="btn">Abstain</button>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  <div class="column col-4 col-xs-12 col-sm-12">
-		<div class="card bg-secondary">
-		  <div class="card-header">
-			<div class="card-title h5">My First Note
-			</div>
-		  </div>
-		  <div class="card-body">To make a contribution to the world by making tools for the mind that advance humankind.
-		  </div>
-		  <div class="card-footer">
-			<div class="btn-group btn-group-block">
-			  <button class="btn btn-primary">Vote Now!</button>
-			  <button class="btn">Abstain</button>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  <div class="column col-4 col-xs-12 col-sm-12">
-		<div class="card bg-secondary">
-		  <div class="card-header">
-			<div class="card-title h5">My First Note
-			</div>
-		  </div>
-		  <div class="card-body">To make a contribution to the world by making tools for the mind that advance humankind.
-		  </div>
-		  <div class="card-footer">
-			<div class="btn-group btn-group-block">
-			  <button class="btn btn-primary">Vote Now!</button>
-			  <button class="btn">Abstain</button>
+				<button ng-repeat="o in q.options" id="{{ o.id }}" class="btn btn-primary">{{ o.text }}</button>
 			</div>
 		  </div>
 		</div>
@@ -113,11 +54,11 @@
 	  <div class="gjs-cell">
 		<div class="card bg-gray">
 		  <div class="card-header">
-			<div class="card-title h5 final-card-title">Would you like to ban Fracking?
+			  <div class="card-title h5 final-card-title">{{ issue.title }}
 			</div>
 		  </div>
 		  <div class="card-body">
-			<div id="ia1aro">When you're finished answering the questions above, this is the last one. Please answer Yes or No.
+			  <div id="ia1aro">{{ issue.description }}
 			</div>
 			<div>
 			  <br/>
@@ -139,16 +80,16 @@
   </div>
 </section>
 <footer class="footer">
-  <p class="text-center">Made in 48 Hours |   Powered by HackYG
+  <p class="text-center">Made in 48 Hours   |   Powered by HackYG
   </p>
 </footer>
 		</div>
 		<script>
 var app = angular.module('tenacityApp', []);
 app.controller('tenacityCtrl', function($scope, $http) {
-    $http.get("/question?id=1")
+    $http.get("/issue?id=1")
     .then(function(response) {
-        $scope.firstData = response.data.id;
+        $scope.issue = response.data;
     });
 });
 </script>
