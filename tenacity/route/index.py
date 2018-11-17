@@ -14,7 +14,7 @@ def index():
         if issue.create_issue(form_data['title'], form_data['message']):
             return flask.jsonify(submit=True)
         return flask.jsonify(submit=False)
-    return flask.render_template("index.html")
+    return app.send_static_file("index.html")
 
 
 @app.route('/', methods=['GET', 'POST'])

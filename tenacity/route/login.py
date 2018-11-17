@@ -14,4 +14,4 @@ def login():
         if login_service.login_account(form_data['username'], form_data['password']):
             return flask.jsonify(login=True)
         return flask.jsonify(login=False)
-    return flask.render_template("login.html")
+    return app.send_static_file("login.html")
