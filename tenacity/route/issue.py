@@ -11,7 +11,6 @@ def issue():
         try:
             data[key] = getattr(command_issue, key)(flask.request.args[key])
         except AttributeError as ex:
-            raise ex
             data = {"error": "'{}' does not exist.".format(key)}
             break
 

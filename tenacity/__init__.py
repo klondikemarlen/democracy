@@ -54,6 +54,7 @@ def import_routes():
     import tenacity.route.vote
     import tenacity.route.issue
     import tenacity.route.icon
+    import tenacity.route.task
 
 
 import_models()
