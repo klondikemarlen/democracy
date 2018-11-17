@@ -59,13 +59,8 @@
           url     : '/login.html',
           data    : $scope.user,
           headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
-         }).success(function(data) {
-            if (data.errors) {
-              $scope.errorUserName = data.errors.username;
-              $scope.errorEmail = data.errors.password;
-            } else {
-              $scope.message = data.message;
-            }
+         }).then(function(response) {
+		 window.location.href = "/vote.html";
           });
         };
     });
