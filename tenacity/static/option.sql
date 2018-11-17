@@ -1,5 +1,5 @@
-INSERT INTO option(id,text,question_id) VALUES (1,"YG Health and social services",1);
-INSERT INTO option(id,text,question_id) VALUES (2,"Salvation Army",1);
+INSERT INTO option (id,text,question_id) VALUES (1,"YG Health and social services",1);
+INSERT INTO option (id,text,question_id) VALUES (2,"Salvation Army",1);
 INSERT INTO option (id,text,question_id) VALUES (3,"A new Non-profit",1);
 INSERT INTO option (id,text,question_id) VALUES (4,"Beds, meals and showers",2);
 INSERT INTO option (id,text,question_id) VALUES (5,"Secure storage, laundry services, food and shelter",2);
