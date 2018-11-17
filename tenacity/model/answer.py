@@ -6,3 +6,4 @@ class Answer(GameState):
 
     # currently one-to-one with question, possibly should be many-to-many with question?
     issue_id = db.Column(db.Integer, db.ForeignKey('issue.id'), nullable=True)
+    option_id = db.Column(db.Integer, db.ForeignKey('option.id'), nullable=True)

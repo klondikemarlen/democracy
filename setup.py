@@ -14,6 +14,7 @@ setuptools.setup(
         'sqlalchemy',
         'werkzeug',
         'wtforms',
-        'flask-sslify'
+        'flask-sslify',
+        'mysqlclient',
     ]
 )
