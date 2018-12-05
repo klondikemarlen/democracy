@@ -31,7 +31,7 @@ def issue_id(value):
         ))
 
     yes_votes = sum([1 if vote.cast == 1 else 0 for vote in issue.votes])
-    no_votes = sum([0 if vote.cast == 0 else 1 for vote in issue.votes])
+    no_votes = sum([1 if vote.cast == 0 else 0 for vote in issue.votes])
     # example data
     # yes_votes = 57
     # no_votes = 23
