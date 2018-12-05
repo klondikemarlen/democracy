@@ -1,4 +1,4 @@
-# tenacity
+# Tenacity [a.k.a. 10-ant-city]
 Basic democracy, primarily voting, web app.
 
 Currently located at: https://tenacity.pythonanywhere.com/static/login.html
