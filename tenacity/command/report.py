@@ -30,11 +30,11 @@ def issue_id(value):
             options=options_data,
         ))
 
-    # yes_votes = sum([1 if vote.cast is not None else 0 for vote in issue.votes])
-    # no_votes = sum([0 if vote.cast is not None else 1 for vote in issue.votes])
+    yes_votes = sum([1 if vote.cast == 1 else 0 for vote in issue.votes])
+    no_votes = sum([0 if vote.cast == 0 else 1 for vote in issue.votes])
     # example data
-    yes_votes = 57
-    no_votes = 23
+    # yes_votes = 57
+    # no_votes = 23
     data = dict(
         id=issue.id,
         title=issue.title,
