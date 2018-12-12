@@ -7,7 +7,6 @@ if __name__ == "__main__":
     parser.add_argument("-d", help="Delete the database.", action='store_true')
     parser.add_argument("-c", help="Refresh the database schema.", action='store_true')
     args = parser.parse_args()
-
     if args.d:
         os.system('mysql --defaults-file=private_mysql_config.cnf -e "DROP DATABASE IF EXISTS {name};"'.format(
             name=private_config.DATABASE_NAME))
