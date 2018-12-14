@@ -7,18 +7,12 @@ from flask_sqlalchemy import SQLAlchemy
 import flask_sslify
 # from flask_wtf.csrf import CSRFProtect
 
-import private_config
-
-UPLOAD_FOLDER = 'tenacity/static/uploads/'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
-app.config.from_object('private_config')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+app.config.from_object('private_config.DevelopmentConfig')
 
 if 'liveweb' in socket.gethostname():
-    app.config['SQLALCHEMY_DATABASE_URI'] = private_config.SERVER_DATABASE_URI
+    app.config.from_object('private_config.ProductionConfig')
 
 db = SQLAlchemy(app)
 sslify = flask_sslify.SSLify(app)
