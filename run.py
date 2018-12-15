@@ -1,8 +1,11 @@
 import os
+import sys
 import argparse
 import private_config
 
 if __name__ == "__main__":
+    py_info = "{}.{}".format(sys.version_info.major, sys.version_info.minor)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", help="Delete the database.", action='store_true')
     parser.add_argument("-c", help="Refresh the database schema.", action='store_true')
@@ -21,4 +24,5 @@ if __name__ == "__main__":
         args.c = "export FLASK_CLEAN=true &&"
     else:
         args.c = ""
-    os.system("export FLASK_APP=tenacity && export FLASK_DEBUG=true && {c}python3 -m flask run".format(c=args.c))
+
+    os.system("export FLASK_APP=tenacity && export FLASK_DEBUG=true && {c}python{v} -m flask run".format(c=args.c, v=py_info))

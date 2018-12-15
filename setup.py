@@ -18,6 +18,7 @@ setuptools.setup(
         'mysqlclient',
         'pytest',
         'Flask-Testing',
-        'pyjwt'
+        'pyjwt',
+        'flask-bcrypt'
     ]
 )

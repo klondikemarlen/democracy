@@ -3,17 +3,20 @@ import socket
 
 from flask import Flask, render_template
 from flask_json import FlaskJSON
+from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 import flask_sslify
 # from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
-app.config.from_object('private_config.DevelopmentConfig')
 
 if 'liveweb' in socket.gethostname():
     app.config.from_object('private_config.ProductionConfig')
+else:
+    app.config.from_object('private_config.DevelopmentConfig')
 
+bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
 sslify = flask_sslify.SSLify(app)
 
