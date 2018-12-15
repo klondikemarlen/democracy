@@ -1,12 +1,11 @@
-import os
 import socket
 
 from flask import Flask, render_template
 from flask_json import FlaskJSON
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-import flask_sslify
-# from flask_wtf.csrf import CSRFProtect
+from flask_sslify import SSLify
+from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
@@ -18,11 +17,9 @@ else:
 
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
-sslify = flask_sslify.SSLify(app)
-
-# csrf = CSRFProtect(app)
-# csrf.init_app(app)
-
+sslify = SSLify(app)
+csrf = CSRFProtect(app)
+csrf.init_app(app)
 json = FlaskJSON(app)
 
 
@@ -59,7 +56,3 @@ def import_routes():
 import_models()
 import_routes()
 
-if os.environ.get("FLASK_CLEAN") == "true" and os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-    db.drop_all()
-    db.create_all()
-    print("Rebuilding database")

@@ -19,6 +19,7 @@ setuptools.setup(
         'pytest',
         'Flask-Testing',
         'pyjwt',
-        'flask-bcrypt'
+        'flask-bcrypt',
+        'flask-script',
     ]
 )
