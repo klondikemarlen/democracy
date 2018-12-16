@@ -18,6 +18,7 @@ class BaseConfig:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     CSRF_ENABLED = True
     CSRF_SESSION_KEY = private_config.CSRF_SESSION_KEY
+    JWT_ALGORITHM = 'HS256'
 
 
 class DevelopmentConfig(BaseConfig):

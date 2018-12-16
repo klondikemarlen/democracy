@@ -15,13 +15,13 @@ class Account(Base):
 
     def __init__(self, email, password, admin=False):
         self.email = email
-
+        self.username = email  # allow this to be changed later?
         pass_hash = bcrypt.generate_password_hash(password, app.config.get('BCRYPT_LOG_ROUNDS'))
         self.password_hash = pass_hash.decode()
         self.registered_on = datetime.datetime.now()
         self.admin = admin
 
-    def encode_auth_token(self, user_id):
+    def encode_auth_token(self):
         """Generate the authentication token.
 
         :return: string
@@ -31,12 +31,32 @@ class Account(Base):
             payload = {
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
                 'iat': datetime.datetime.utcnow(),
-                'sub': user_id
+                'sub': self.id
             }
             return jwt.encode(
                 payload,
                 app.config.get('SECRET_KEY'),
-                algorithm='HS256'
+                algorithm=app.config.get('JWT_ALGORITHM')
             )
         except Exception as e:
             return e
+
+    @staticmethod
+    def decode_auth_token(auth_token):
+        """Decodes the authentication token.
+
+        :param auth_token
+        :return: integer|string
+        """
+
+        try:
+            payload = jwt.decode(
+                auth_token,
+                app.config.get("SECRET_KEY"),
+                algorithms=[app.config.get('JWT_ALGORITHM')]
+            )
+            return payload['sub']
+        except jwt.ExpiredSignatureError:
+            return "Signature expired. Please log in again."
+        except jwt.InvalidTokenError:
+            return "Invalid token. Please log in again."
