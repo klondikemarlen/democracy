@@ -1,7 +1,7 @@
-from tenacity.model.base import GameState, db
+from tenacity.model.base import Base, db
 
 
-class Answer(GameState):
+class Answer(Base):
     text = db.Column(db.String(128), nullable=False)
 
     # currently one-to-one with question, possibly should be many-to-many with question?

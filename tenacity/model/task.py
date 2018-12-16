@@ -1,7 +1,7 @@
-from tenacity.model.base import GameState, db
+from tenacity.model.base import Base, db
 
 
-class Task(GameState):
+class Task(Base):
     issue_id = db.Column(db.Integer, db.ForeignKey('issue.id'), nullable=True)
 
     # account which has taken responsibility for the task.

@@ -16,5 +16,10 @@ setuptools.setup(
         'wtforms',
         'flask-sslify',
         'mysqlclient',
+        'pytest',
+        'Flask-Testing',
+        'pyjwt',
+        'flask-bcrypt',
+        'flask-script',
     ]
 )

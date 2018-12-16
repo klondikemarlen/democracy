@@ -1,31 +1,25 @@
-import os
 import socket
 
 from flask import Flask, render_template
 from flask_json import FlaskJSON
+from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-import flask_sslify
-# from flask_wtf.csrf import CSRFProtect
+from flask_sslify import SSLify
+from flask_wtf.csrf import CSRFProtect
 
-import private_config
-
-UPLOAD_FOLDER = 'tenacity/static/uploads/'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
-app.config.from_object('private_config')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 if 'liveweb' in socket.gethostname():
-    app.config['SQLALCHEMY_DATABASE_URI'] = private_config.SERVER_DATABASE_URI
+    app.config.from_object('private_config.ProductionConfig')
+else:
+    app.config.from_object('private_config.DevelopmentConfig')
 
+bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
-sslify = flask_sslify.SSLify(app)
-
-# csrf = CSRFProtect(app)
-# csrf.init_app(app)
-
+sslify = SSLify(app)
+csrf = CSRFProtect(app)
+csrf.init_app(app)
 json = FlaskJSON(app)
 
 
@@ -62,7 +56,3 @@ def import_routes():
 import_models()
 import_routes()
 
-if os.environ.get("FLASK_CLEAN") == "true" and os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-    db.drop_all()
-    db.create_all()
-    print("Rebuilding database")
