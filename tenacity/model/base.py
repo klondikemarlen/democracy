@@ -12,7 +12,7 @@ convention = {
 db.Model.metadata.naming_convention = convention
 
 
-class GameState(db.Model):
+class Base(db.Model):
     __abstract__ = True
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

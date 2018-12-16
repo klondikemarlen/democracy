@@ -1,5 +1,3 @@
-import pytest
-
 from flask import current_app
 from flask_testing import TestCase
 
@@ -35,3 +33,4 @@ class TestProductionConfig(TestCase):
 
     def test_app_is_production(self):
         assert app.config['DEBUG'] is False
+        assert app.config['SQLALCHEMY_POOL_RECYCLE'] == 299

@@ -1,7 +1,7 @@
-from tenacity.model.base import GameState, db
+from tenacity.model.base import Base, db
 
 
-class Issue(GameState):
+class Issue(Base):
     title = db.Column(db.String(128), nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
