@@ -45,6 +45,6 @@ class ProductionConfig(BaseConfig):
     DEBUG = False
     SQLALCHEMY_POOL_RECYCLE = 299  # 1s less than PythonAnywhere's 300s (5 min).
     SQLALCHEMY_DATABASE_URI = MYSQL_BASE.format(
-        user=USER, passwd=DB_PASSWORD, host=HOST + '.mysql.pythonanywhere-services.com', dbname=DATABASE_NAME + '$default', options=OPTIONS)
+        user=USER, passwd=DB_PASSWORD, host=USER + '.mysql.pythonanywhere-services.com', dbname=DATABASE_NAME + '$default', options=OPTIONS)
 
 
