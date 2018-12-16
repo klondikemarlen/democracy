@@ -19,8 +19,9 @@ Basic development usage:
 
 `pip install -r requirements.txt`  # install all project requirements
 
-`python manage`  # list app management options.
+`python manage.py`  # list app management options.
 
-`python manage reset_db`  # build a new database with junk data
+`python manage.py reset_db`  # build a new database with junk data, may need to create the database manually.
+Will need to setup and configure MySQL manually.
 
-`python manage runserver`  # run the server
+`python manage.py runserver`  # run the server
