@@ -10,8 +10,9 @@ from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 
-if 'liveweb' in socket.gethostname():
+if 'live' in socket.gethostname():  # The server name will change.
     app.config.from_object('config.ProductionConfig')
+    print("Running ProductionConfig")
 else:
     app.config.from_object('config.DevelopmentConfig')
 
