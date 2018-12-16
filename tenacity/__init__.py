@@ -11,9 +11,9 @@ from flask_wtf.csrf import CSRFProtect
 app = Flask(__name__)
 
 if 'liveweb' in socket.gethostname():
-    app.config.from_object('private_config.ProductionConfig')
+    app.config.from_object('config.ProductionConfig')
 else:
-    app.config.from_object('private_config.DevelopmentConfig')
+    app.config.from_object('config.DevelopmentConfig')
 
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
