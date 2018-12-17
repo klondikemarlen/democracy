@@ -1,3 +1,7 @@
+# tests/test_account_model.py
+
+import pytest
+
 from tenacity import db
 from tenacity.model.account import Account
 from tests.base import BaseTestCase
@@ -26,3 +30,7 @@ class TestAccountModel(BaseTestCase):
         auth_token = account.encode_auth_token()
         assert isinstance(auth_token, bytes)
         assert Account.decode_auth_token(auth_token) == 1
+
+
+if __name__ == "__main__":
+    pytest.main([__file__])
