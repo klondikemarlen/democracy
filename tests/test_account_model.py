@@ -14,8 +14,7 @@ class TestAccountModel(BaseTestCase):
             password="test"
         )
 
-        db.session.add(account)
-        db.session.commit()
+        account.save()
         auth_token = account.encode_auth_token()
 
         assert isinstance(auth_token, bytes)
@@ -25,8 +24,7 @@ class TestAccountModel(BaseTestCase):
             email="test@gmail.com",
             password="test"
         )
-        db.session.add(account)
-        db.session.commit()
+        account.save()
         auth_token = account.encode_auth_token()
         assert isinstance(auth_token, bytes)
         assert Account.decode_auth_token(auth_token) == 1
