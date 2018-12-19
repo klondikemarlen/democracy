@@ -19,7 +19,7 @@ class Base(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    # thanks to https://chase-seibert.github.io/blog/2016/03/31/flask-sqlalchemy-sessionless.html
+    # Thanks to https://chase-seibert.github.io/blog/2016/03/31/flask-sqlalchemy-sessionless.html
     def save(self):
         db.session.add(self)
         self._flush()
@@ -42,5 +42,5 @@ class Base(db.Model):
             raise
 
 
-# allows direct access the the query from Base.
-Base.query = db.session.query_property()
+# Allows direct access the the query from Base.
+# Base.query = db.session.query_property()

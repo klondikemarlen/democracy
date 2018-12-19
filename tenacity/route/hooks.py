@@ -3,7 +3,7 @@ from sqlalchemy.exc import DatabaseError
 from tenacity import app, db
 
 
-# thanks to https://chase-seibert.github.io/blog/2016/03/31/flask-sqlalchemy-sessionless.html
+# Thanks to https://chase-seibert.github.io/blog/2016/03/31/flask-sqlalchemy-sessionless.html
 @app.after_request
 def session_commit(response):
     if response.status_code >= 400:
