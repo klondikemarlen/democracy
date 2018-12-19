@@ -53,7 +53,7 @@ def import_routes():
     import tenacity.route.report
     import tenacity.route.record
 
-    from tenacity.route.auth.views import auth_blueprint
+    from .auth.views import auth_blueprint
     app.register_blueprint(auth_blueprint)
 
 

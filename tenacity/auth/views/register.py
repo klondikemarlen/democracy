@@ -1,12 +1,10 @@
-# tenacity/route/auth/views.py
+# tenacity/auth/views/register.py
 
-from flask import Blueprint, request, make_response, jsonify
+from flask import request, make_response, jsonify
 from flask.views import MethodView
 
 from tenacity import bcrypt, db
 from tenacity.model.account import Account
-
-auth_blueprint = Blueprint('auth', __name__)
 
 
 class RegisterAPI(MethodView):
@@ -49,10 +47,3 @@ class RegisterAPI(MethodView):
 
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
-
-# add rule for API endpoints
-auth_blueprint.add_url_rule(
-    '/auth/register',
-    view_func=registration_view,
-    methods=['POST']
-)
