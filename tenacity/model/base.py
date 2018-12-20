@@ -17,7 +17,8 @@ db.Model.metadata.naming_convention = convention
 class Base(db.Model):
     __abstract__ = True
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    # auto-increments by default
+    id = db.Column(db.Integer, primary_key=True)
 
     # Thanks to https://chase-seibert.github.io/blog/2016/03/31/flask-sqlalchemy-sessionless.html
     def save(self):
