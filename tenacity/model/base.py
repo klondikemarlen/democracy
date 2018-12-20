@@ -43,4 +43,5 @@ class Base(db.Model):
 
 
 # Allows direct access the the query from Base.
+# Not needed when using Flask-SQLAlchemy
 # Base.query = db.session.query_property()

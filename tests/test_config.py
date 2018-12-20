@@ -40,4 +40,5 @@ class TestProductionConfig(TestCase):
 
 
 if __name__ == "__main__":
-    pytest.main([__file__])
+    import sys
+    pytest.main(sys.argv)

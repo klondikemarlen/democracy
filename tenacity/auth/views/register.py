@@ -3,7 +3,6 @@
 from flask import request, make_response, jsonify
 from flask.views import MethodView
 
-from tenacity import bcrypt, db
 from tenacity.model.account import Account
 
 
@@ -45,5 +44,5 @@ class RegisterAPI(MethodView):
             return make_response(jsonify(response)), 202
 
 
-# define the API resources
+# define the API resource
 registration_view = RegisterAPI.as_view('register_api')
