@@ -5,6 +5,7 @@ from flask import Blueprint
 from .register import registration_view
 from .login import login_view
 from .account import account_view
+from .logout import logout_view
 
 auth_blueprint = Blueprint('auth', __name__)
 
@@ -25,4 +26,10 @@ auth_blueprint.add_url_rule(
     '/auth/status',
     view_func=account_view,
     methods=['GET']
+)
+
+auth_blueprint.add_url_rule(
+    '/auth/logout',
+    view_func=logout_view,
+    methods=['POST']
 )

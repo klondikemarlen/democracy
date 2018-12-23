@@ -1,7 +1,7 @@
 from flask import request, make_response, jsonify
 from flask.views import MethodView
 
-from tenacity import bcrypt, db
+from tenacity import bcrypt
 from tenacity.model.account import Account
 
 

@@ -29,8 +29,16 @@ def not_found(error):
     return render_template('404.html'), 404
 
 
-# must import all models into model/__init__.py
-import tenacity.model
+def import_models():
+    from tenacity.model.account import Account
+    from tenacity.model.issue import Issue
+    from tenacity.model.vote import Vote
+    from tenacity.model.response import Response
+    from tenacity.model.question import Question
+    from tenacity.model.answer import Answer
+    from tenacity.model.option import Option
+    from tenacity.model.task import Task
+    from tenacity.model.blacklist_token import BlacklistToken
 
 
 def import_routes():
@@ -50,4 +58,6 @@ def import_routes():
     app.register_blueprint(auth_blueprint)
 
 
+import_models()
 import_routes()
+
