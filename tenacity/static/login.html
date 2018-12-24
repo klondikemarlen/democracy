@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-    <link rel="stylesheet" href="/static/assets/css/styles.css"> </head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="/static/assets/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
 	<body>
 		<div ng-app="tenacityApp" ng-controller="tenacityCtrl">
 			<header class="navbar bg-primary">
@@ -34,8 +35,8 @@
     <div class="page-header"><h1>Login to site</h1></div>
     <form name="userForm">
     <div class="form-group">
-        <label>Username</label>
-        <input type="text" name="username" class="form-control" ng-model="user.username">
+        <label>Email</label>
+        <input type="text" name="email" class="form-control" ng-model="user.email">
         <span ng-show="errorUserName">{{errorUserName}}</span>
     </div>
     <div class="form-group">
@@ -49,23 +50,22 @@
 </div>
 </div>
     <footer class="footer"></footer>
-		</div>
-		<script>
+        <script>
 			var postApp = angular.module('tenacityApp', []);
-    postApp.controller('tenacityCtrl', function($scope, $http) {
-      $scope.user = {};
-        $scope.submitForm = function() {
-        $http({
-          method  : 'POST',
-          url     : '/login.html',
-          data    : $scope.user,
-          headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
-         }).then(function(response) {
-		 window.location.href = "/vote.html";
-          });
-        };
-    });
-</script>
+            postApp.controller('tenacityCtrl', function($scope, $http) {
+                $scope.user = {};
+                $scope.submitForm = function() {
+                    $http({
+                        method  : 'POST',
+                        url     : '/auth/login',
+                        data    : $scope.user,
+                        headers : { 'Content-Type': 'application/json' }
+                    }).then(function(response) {
+                        window.location.href = "/vote.html";
+                    });
+                };
+            });
+        </script>
 </body>
 
 </html>
