@@ -4,6 +4,7 @@ import jwt
 
 from tenacity import app, db, bcrypt
 from tenacity.model.base import Base
+from tenacity.model.blacklist_token import BlacklistToken
 
 
 class Account(Base):
@@ -55,7 +56,11 @@ class Account(Base):
                 app.config.get("SECRET_KEY"),
                 algorithms=[app.config.get('JWT_ALGORITHM')]
             )
-            return payload['sub']
+            is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
+            if is_blacklisted_token:
+                return 'Token blacklisted. Please log in again.'
+            else:
+                return payload['sub']
         except jwt.ExpiredSignatureError:
             return "Signature expired. Please log in again."
         except jwt.InvalidTokenError:

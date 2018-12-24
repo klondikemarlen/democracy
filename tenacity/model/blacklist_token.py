@@ -14,5 +14,15 @@ class BlacklistToken(Base):
         self.token = token
         self.blacklisted_on = datetime.datetime.now()
 
+    @staticmethod
+    def check_blacklist(auth_token):
+        """Check whether an auth token has been blacklisted."""
+
+        res = BlacklistToken.query.filter_by(token=str(auth_token)).first()
+        if res:
+            return True
+        else:
+            return False
+
     def __repr__(self):
         return '<id: token: {}'.format(self.token)

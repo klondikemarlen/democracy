@@ -4,7 +4,7 @@ import json
 import pytest
 
 # kept full path to allow running only this file.
-from tests.test_auth.helpers import register_user, login_user
+from tests.test_auth.helpers import register_account, login_account
 from tests.base import BaseTestCase
 
 
@@ -14,7 +14,7 @@ class TestAuthLogin(BaseTestCase):
 
         with self.client:
             # user registration
-            resp_register = register_user(self, 'test@gmail.com', '123456')
+            resp_register = register_account(self, 'test@gmail.com', '123456')
             assert resp_register.content_type == 'application/json'
             assert resp_register.status_code == 201
 
@@ -24,7 +24,7 @@ class TestAuthLogin(BaseTestCase):
             assert data_register['auth_token']
 
             # registered user login
-            response = login_user(self, 'test@gmail.com', '123456')
+            response = login_account(self, 'test@gmail.com', '123456')
             assert response.content_type == 'application/json'
             assert response.status_code == 200
 
@@ -37,7 +37,7 @@ class TestAuthLogin(BaseTestCase):
         """Test for login of non-registered account."""
 
         with self.client:
-            response = login_user(self, 'test@gmail.com', '123456')
+            response = login_account(self, 'test@gmail.com', '123456')
             assert response.content_type == 'application/json'
             assert response.status_code == 404
 
@@ -47,7 +47,7 @@ class TestAuthLogin(BaseTestCase):
 
     def test_correct_email_incorrect_password(self):
         with self.client:
-            resp_register = register_user(self, 'test@gmail.com', '123456')
+            resp_register = register_account(self, 'test@gmail.com', '123456')
             assert resp_register.content_type == 'application/json'
             assert resp_register.status_code == 201
 
@@ -56,7 +56,7 @@ class TestAuthLogin(BaseTestCase):
             assert data_register['message'] == 'Successfully registered.'
             assert data_register['auth_token']
 
-            response = login_user(self, 'test@gmail.com', 'wrong_password')
+            response = login_account(self, 'test@gmail.com', 'wrong_password')
             assert response.content_type == 'application/json'
             assert response.status_code == 401
 

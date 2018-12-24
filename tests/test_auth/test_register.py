@@ -5,7 +5,7 @@ import json
 
 from tenacity.model.account import Account
 from tests.base import BaseTestCase
-from tests.test_auth.helpers import register_user
+from tests.test_auth.helpers import register_account
 
 
 class TestAuthRegister(BaseTestCase):
@@ -13,7 +13,7 @@ class TestAuthRegister(BaseTestCase):
         """Test for account registration."""
 
         with self.client:
-            response = register_user(self, 'test@gmail.com', '123456')
+            response = register_account(self, 'test@gmail.com', '123456')
             assert response.content_type == 'application/json'
             assert response.status_code == 201
 
@@ -32,7 +32,7 @@ class TestAuthRegister(BaseTestCase):
         account.save()
 
         with self.client:
-            response = register_user(self, 'test@gmail.com', '123456')
+            response = register_account(self, 'test@gmail.com', '123456')
             assert response.content_type == 'application/json'
             assert response.status_code == 202
 

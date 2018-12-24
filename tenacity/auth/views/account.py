@@ -10,7 +10,14 @@ class AccountAPI(MethodView):
         # get the auth token
         auth_header = request.headers.get('Authorization')
         if auth_header:
-            auth_token = auth_header.split(" ")[1]
+            try:
+                auth_token = auth_header.split(" ")[1]
+            except IndexError:
+                response = {
+                    'status': 'fail',
+                    'message': 'Bearer token malformed.'
+                }
+                return make_response(jsonify(response)), 401
         else:
             auth_token = ''
         if auth_token:

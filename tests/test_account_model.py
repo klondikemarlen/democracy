@@ -27,7 +27,7 @@ class TestAccountModel(BaseTestCase):
         account.save()
         auth_token = account.encode_auth_token()
         assert isinstance(auth_token, bytes)
-        assert Account.decode_auth_token(auth_token) == 1
+        assert Account.decode_auth_token(auth_token.decode('utf-8')) == 1
 
 
 if __name__ == "__main__":
