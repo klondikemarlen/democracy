@@ -17,10 +17,21 @@ class Account(Base):
     def __init__(self, email, password, admin=False):
         self.email = email
         self.username = email  # allow this to be changed later?
-        pass_hash = bcrypt.generate_password_hash(password, app.config.get('BCRYPT_LOG_ROUNDS'))
-        self.password_hash = pass_hash.decode()
+        self.password_hash = Account.generate_password(password)
         self.registered_on = datetime.datetime.now()
         self.admin = admin
+
+    @staticmethod
+    def generate_password(password):
+        return bcrypt.generate_password_hash(
+            password,
+            app.config.get('BCRYPT_LOG_ROUNDS')
+        ).decode()
+
+    def update_password(self, password):
+        """Update the current password of the account."""
+
+        self.password_hash = Account.generate_password(password)
 
     def encode_auth_token(self):
         """Generate the authentication token.
