@@ -2,8 +2,10 @@
 import os
 
 from flask import Blueprint, current_app
+from flask import current_app
+# from tenacity import app
 
-from tenacity.cache_buster.file_helpers import get_last_modified_time, \
+from .file_helpers import get_last_modified_time, \
     check_static_link
 
 
@@ -19,7 +21,9 @@ def startup():
         check_static_link(last_modified_date, current_app)
 
         # Cache Buster (return static url amended with last timestamp)
-        @cache_buster_blueprint.url_defaults
-        def static_cache_buster(endpoint, values):
-            if endpoint in 'static':
-                values['filename'] = os.path.join(last_modified_date, values['filename'])
+        current_app.static_folder = os.path.join(current_app.static_folder, last_modified_date)
+        current_app.logger.info('Hard-replacing static link.')
+
+        # import pdb;pdb.set_trace()
+        # current_app.url_value_preprocessors['static'] = static_cache_buster
+

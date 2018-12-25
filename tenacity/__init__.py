@@ -2,8 +2,9 @@
 
 import socket
 
-from flask import Flask, render_template
+from flask import Flask
 from flask_sslify import SSLify  # Note: does not support factory pattern
+
 
 from model import db, flask_bcrypt, flask_json
 import model.account
@@ -45,6 +46,7 @@ def import_routes():
     import tenacity.route.task
     import tenacity.route.report
     import tenacity.route.record
+    # import tenacity.cache_buster.views
 
 
 import_routes()

@@ -42,7 +42,3 @@ class RegisterAPI(MethodView):
                 'message': 'User already exists. Please log in.'
             }
             return make_response(jsonify(response)), 202
-
-
-# define the API resource
-registration_view = RegisterAPI.as_view('register_api')

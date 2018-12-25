@@ -45,6 +45,3 @@ class AccountAPI(MethodView):
                 'message': 'Provide a valid auth token.'
             }
             return make_response(jsonify(response)), 401
-
-
-account_view = AccountAPI.as_view('account_api')
