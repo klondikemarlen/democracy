@@ -1,4 +1,5 @@
-from tenacity.model.base import Base, db
+from model import db
+from model.base import Base
 
 
 class Response(Base):

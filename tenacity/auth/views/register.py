@@ -3,7 +3,7 @@
 from flask import request, make_response, jsonify
 from flask.views import MethodView
 
-from tenacity.model.account import Account
+from model.account import Account
 
 
 class RegisterAPI(MethodView):

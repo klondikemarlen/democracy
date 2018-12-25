@@ -1,8 +1,8 @@
 from flask import request, make_response, jsonify
 from flask.views import MethodView
 
-from tenacity import bcrypt
-from tenacity.model.account import Account
+from tenacity import flask_bcrypt
+from model.account import Account
 
 
 class LoginAPI(MethodView):
@@ -15,7 +15,7 @@ class LoginAPI(MethodView):
             account = Account.query.filter_by(
                 email=post_data.get('email')
             ).first()
-            if account and bcrypt.check_password_hash(account.password_hash, post_data.get('password')):
+            if account and flask_bcrypt.check_password_hash(account.password_hash, post_data.get('password')):
                 auth_token = account.encode_auth_token()
                 if auth_token:
                     response = {

@@ -3,7 +3,7 @@
 import json
 import pytest
 
-from tenacity.model.blacklist_token import BlacklistToken
+from model.blacklist_token import BlacklistToken
 from tests.test_auth.helpers import register_account, account_status
 from tests.base import BaseTestCase
 

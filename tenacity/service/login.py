@@ -1,4 +1,4 @@
-from tenacity.model.account import Account
+from model.account import Account
 
 
 def login_account(username, password):

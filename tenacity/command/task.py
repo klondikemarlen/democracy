@@ -1,4 +1,4 @@
-from tenacity.model import task as model_task
+from model import task as model_task
 
 
 def issue_id(value):

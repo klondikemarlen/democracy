@@ -1,8 +1,8 @@
 from flask import request, make_response, jsonify
 from flask.views import MethodView
 
-from tenacity.model.account import Account
-from tenacity.model.blacklist_token import BlacklistToken
+from model.account import Account
+from model.blacklist_token import BlacklistToken
 
 
 class LogoutAPI(MethodView):

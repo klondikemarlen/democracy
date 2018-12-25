@@ -1,6 +1,6 @@
 from sqlalchemy.exc import DatabaseError
 
-from tenacity import db
+from model import db
 
 convention = {
   "ix": 'ix_%(column_0_label)s',

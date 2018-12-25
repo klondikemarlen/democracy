@@ -1,10 +1,12 @@
 import datetime
 
 import jwt
+from flask import current_app
 
-from tenacity import app, db, bcrypt
-from tenacity.model.base import Base
-from tenacity.model.blacklist_token import BlacklistToken
+from model import db
+from tenacity import flask_bcrypt
+from model.base import Base
+from model.blacklist_token import BlacklistToken
 
 
 class Account(Base):
@@ -23,9 +25,9 @@ class Account(Base):
 
     @staticmethod
     def generate_password(password):
-        return bcrypt.generate_password_hash(
+        return flask_bcrypt.generate_password_hash(
             password,
-            app.config.get('BCRYPT_LOG_ROUNDS')
+            current_app.config.get('BCRYPT_LOG_ROUNDS')
         ).decode()
 
     def update_password(self, password):
@@ -47,8 +49,8 @@ class Account(Base):
             }
             return jwt.encode(
                 payload,
-                app.config.get('SECRET_KEY'),
-                algorithm=app.config.get('JWT_ALGORITHM')
+                current_app.config.get('SECRET_KEY'),
+                algorithm=current_app.config.get('JWT_ALGORITHM')
             )
         except Exception as e:
             return e
@@ -64,8 +66,8 @@ class Account(Base):
         try:
             payload = jwt.decode(
                 auth_token,
-                app.config.get("SECRET_KEY"),
-                algorithms=[app.config.get('JWT_ALGORITHM')]
+                current_app.config.get("SECRET_KEY"),
+                algorithms=[current_app.config.get('JWT_ALGORITHM')]
             )
             is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
             if is_blacklisted_token:

@@ -1,7 +1,10 @@
 import pytest
+
 from flask import current_app
 from flask_script import Manager, Command
-from tenacity import app, db
+
+from model import db
+from tenacity import app
 
 
 manager = Manager(app)
@@ -29,7 +32,8 @@ class TestCommand(Command):
 @manager.command
 def init_db():
     """Initialize the database."""
-    db.create_all()
+    with app.app_context():
+        db.create_all()
     print("Create all tables.")
 
 
@@ -37,7 +41,8 @@ def init_db():
 def drop_db():
     """Drop the database."""
     # db.engine.execute("SET FOREIGN_KEY_CHECKS=0;")
-    db.drop_all()
+    with app.app_context():
+        db.drop_all()
     # db.engine.execute("SET FOREIGN_KEY_CHECKS=1;")
     print("Drop all tables.")
 

@@ -1,7 +1,7 @@
 import datetime
 
-from tenacity import db
-from tenacity.model.base import Base
+from model import db
+from model.base import Base
 
 
 class BlacklistToken(Base):
