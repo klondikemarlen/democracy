@@ -45,7 +45,3 @@ class LogoutAPI(MethodView):
                 'message': 'Provide a valid auth token.'
             }
             return make_response(jsonify(response)), 403
-
-
-# define API resource
-logout_view = LogoutAPI.as_view('logout_api')

@@ -43,7 +43,3 @@ class LoginAPI(MethodView):
                 'message': 'Try again'
             }
             return make_response(jsonify(response)), 500
-
-
-# define API resource
-login_view = LoginAPI.as_view('login_api')
