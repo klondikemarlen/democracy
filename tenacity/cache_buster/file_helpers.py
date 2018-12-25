@@ -31,5 +31,5 @@ def check_static_link(timestamp, app):
                 app.logger.info('Remove old link {}'.format(name))
                 os.unlink(abs_file_path)
     # Create the newest link
-    app.logger.info('Create link to static {}'.format(os.path.join(static_path, timestamp)))
+    app.logger.info('Link to static to static/{}'.format(timestamp))
     os.symlink(static_path, os.path.join(static_path, timestamp))
