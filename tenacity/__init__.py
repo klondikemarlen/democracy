@@ -3,11 +3,20 @@
 import socket
 
 from flask import Flask, render_template
-from flask_json import FlaskJSON
-from flask_bcrypt import Bcrypt
-from flask_sqlalchemy import SQLAlchemy
-from flask_sslify import SSLify
+from flask_sslify import SSLify  # Note: does not support factory pattern
 
+from model import db, flask_bcrypt, flask_json
+import model.account
+import model.answer
+import model.blacklist_token
+import model.issue
+import model.option
+import model.question
+import model.response
+import model.task
+import model.vote
+from tenacity.auth.views import auth_blueprint
+from tenacity.cache_buster.views import cache_buster_blueprint
 
 app = Flask(__name__)
 
@@ -17,28 +26,11 @@ if 'live' in socket.gethostname():  # The server name will change.
 else:
     app.config.from_object('config.DevelopmentConfig')
 
-bcrypt = Bcrypt(app)
-db = SQLAlchemy(app)
-sslify = SSLify(app)
-json = FlaskJSON(app)
-
-
-@app.errorhandler(404)
-def not_found(error):
-    print("Error:", error)
-    return render_template('404.html'), 404
-
-
-def import_models():
-    from tenacity.model.account import Account
-    from tenacity.model.issue import Issue
-    from tenacity.model.vote import Vote
-    from tenacity.model.response import Response
-    from tenacity.model.question import Question
-    from tenacity.model.answer import Answer
-    from tenacity.model.option import Option
-    from tenacity.model.task import Task
-    from tenacity.model.blacklist_token import BlacklistToken
+# attach various extentions to app
+db.init_app(app)
+flask_bcrypt.init_app(app)
+flask_json.init_app(app)
+flask_sslify = SSLify(app)  # Note: does not support factory pattern
 
 
 def import_routes():
@@ -54,10 +46,7 @@ def import_routes():
     import tenacity.route.report
     import tenacity.route.record
 
-    from .auth.views import auth_blueprint
-    app.register_blueprint(auth_blueprint)
 
-
-import_models()
 import_routes()
-
+app.register_blueprint(auth_blueprint)
+app.register_blueprint(cache_buster_blueprint)

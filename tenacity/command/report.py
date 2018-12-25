@@ -1,7 +1,5 @@
-import tenacity.model.issue as model_issue
-import tenacity.model.response as model_response
-import tenacity.model.question as model_question
-import tenacity.model.option as model_option
+import model.issue as model_issue
+import model.response as model_response
 
 
 def issue_id(value):

@@ -3,7 +3,7 @@
 import pytest
 import json
 
-from tenacity.model.account import Account
+from model.account import Account
 from tests.base import BaseTestCase
 from tests.test_auth.helpers import register_account
 

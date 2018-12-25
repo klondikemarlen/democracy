@@ -2,8 +2,7 @@
 
 import pytest
 
-from tenacity import db
-from tenacity.model.account import Account
+from model.account import Account
 from tests.base import BaseTestCase
 
 
