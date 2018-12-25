@@ -1,9 +1,12 @@
 import os
 
 
-def get_last_modified_time():
-    """Get the timestamp of the most recent modified file"""
-    path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'static')
+def get_last_modified_time(app):
+    """Get the timestamp of the most recently modified file.
+
+    This only refers to files in the current app's static folder.
+    """
+    path = os.path.join(app.root_path, 'static')
     files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(path) for f in filenames]
     timestamp = 0
     for f in files:
@@ -13,12 +16,13 @@ def get_last_modified_time():
 
 
 def check_static_link(timestamp, app):
+    """Check that we have a link to the static folder.
+
+    This only refers to files in the current app's static folder.
+    The link should be <timestamp -> .> (ln -s . timestamp) inside static
+    folder.
     """
-    Check that we have a link to the static folder
-    The link should be <timestamp -> .> (ln -s . timestamp)
-    inside static folder
-    """
-    path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'static')
+    path = os.path.join(app.root_path, 'static')
     # Unlink previous links
     files = os.listdir(path)
     for f in files:

@@ -3,8 +3,7 @@ import datetime
 import jwt
 from flask import current_app
 
-from model import db
-from tenacity import flask_bcrypt
+from model import db, flask_bcrypt
 from model.base import Base
 from model.blacklist_token import BlacklistToken
 

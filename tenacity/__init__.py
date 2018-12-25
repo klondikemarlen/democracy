@@ -3,8 +3,9 @@
 import socket
 
 from flask import Flask, render_template
+from flask_sslify import SSLify  # Note: does not support factory pattern
 
-from model import db, flask_bcrypt, flask_sslify, flask_json
+from model import db, flask_bcrypt, flask_json
 import model.account
 import model.answer
 import model.blacklist_token
@@ -25,16 +26,11 @@ if 'live' in socket.gethostname():  # The server name will change.
 else:
     app.config.from_object('config.DevelopmentConfig')
 
-db.init_app(app)  # attach SQLAlchemy database to app
+# attach various extentions to app
+db.init_app(app)
 flask_bcrypt.init_app(app)
-flask_sslify.init_app(app)
 flask_json.init_app(app)
-
-
-@app.errorhandler(404)
-def not_found(error):
-    print("Error:", error)
-    return render_template('404.html'), 404
+flask_sslify = SSLify(app)  # Note: does not support factory pattern
 
 
 def import_routes():
@@ -49,6 +45,7 @@ def import_routes():
     import tenacity.route.task
     import tenacity.route.report
     import tenacity.route.record
+
 
 import_routes()
 app.register_blueprint(auth_blueprint)

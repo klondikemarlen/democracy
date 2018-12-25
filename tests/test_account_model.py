@@ -2,7 +2,7 @@
 
 import pytest
 
-from model import Account
+from model.account import Account
 from tests.base import BaseTestCase
 
 
