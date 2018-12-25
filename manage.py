@@ -1,15 +1,29 @@
+import pytest
 from flask import current_app
-from flask_script import Manager
+from flask_script import Manager, Command
 from tenacity import app, db
 
 
 manager = Manager(app)
 
 
-@manager.command
-def test():
-    """Runs unit tests."""
-    print("Not implemented!")
+@manager.add_command
+class TestCommand(Command):
+    """Runs unit tests.
+
+    This should be run:
+    `python manage.py test`
+
+    or to pass argmuents to pytest
+    `python manage.py test -v`
+    equivalent of
+    `pytest tests -v`
+    """
+    name = 'test'
+    capture_all_args = True
+
+    def run(self, command=None):
+        pytest.main(['tests'] + command)
 
 
 @manager.command

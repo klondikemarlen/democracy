@@ -1,3 +1,5 @@
+# tenacity/__int__.py
+
 import socket
 
 from flask import Flask, render_template
@@ -5,7 +7,6 @@ from flask_json import FlaskJSON
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_sslify import SSLify
-from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
@@ -19,8 +20,6 @@ else:
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
 sslify = SSLify(app)
-csrf = CSRFProtect(app)
-csrf.init_app(app)
 json = FlaskJSON(app)
 
 
@@ -39,9 +38,11 @@ def import_models():
     from tenacity.model.answer import Answer
     from tenacity.model.option import Option
     from tenacity.model.task import Task
+    from tenacity.model.blacklist_token import BlacklistToken
 
 
 def import_routes():
+    import tenacity.route.hooks
     import tenacity.route.question
     import tenacity.route.reset_schema
     import tenacity.route.index
@@ -52,6 +53,9 @@ def import_routes():
     import tenacity.route.task
     import tenacity.route.report
     import tenacity.route.record
+
+    from .auth.views import auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
 
 import_models()

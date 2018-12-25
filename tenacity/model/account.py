@@ -4,6 +4,7 @@ import jwt
 
 from tenacity import app, db, bcrypt
 from tenacity.model.base import Base
+from tenacity.model.blacklist_token import BlacklistToken
 
 
 class Account(Base):
@@ -15,13 +16,24 @@ class Account(Base):
 
     def __init__(self, email, password, admin=False):
         self.email = email
-
-        pass_hash = bcrypt.generate_password_hash(password, app.config.get('BCRYPT_LOG_ROUNDS'))
-        self.password_hash = pass_hash.decode()
+        self.username = email  # allow this to be changed later?
+        self.password_hash = Account.generate_password(password)
         self.registered_on = datetime.datetime.now()
         self.admin = admin
 
-    def encode_auth_token(self, user_id):
+    @staticmethod
+    def generate_password(password):
+        return bcrypt.generate_password_hash(
+            password,
+            app.config.get('BCRYPT_LOG_ROUNDS')
+        ).decode()
+
+    def update_password(self, password):
+        """Update the current password of the account."""
+
+        self.password_hash = Account.generate_password(password)
+
+    def encode_auth_token(self):
         """Generate the authentication token.
 
         :return: string
@@ -31,12 +43,36 @@ class Account(Base):
             payload = {
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
                 'iat': datetime.datetime.utcnow(),
-                'sub': user_id
+                'sub': self.id
             }
             return jwt.encode(
                 payload,
                 app.config.get('SECRET_KEY'),
-                algorithm='HS256'
+                algorithm=app.config.get('JWT_ALGORITHM')
             )
         except Exception as e:
             return e
+
+    @staticmethod
+    def decode_auth_token(auth_token):
+        """Decodes the authentication token.
+
+        :param auth_token
+        :return: integer|string
+        """
+
+        try:
+            payload = jwt.decode(
+                auth_token,
+                app.config.get("SECRET_KEY"),
+                algorithms=[app.config.get('JWT_ALGORITHM')]
+            )
+            is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
+            if is_blacklisted_token:
+                return 'Token blacklisted. Please log in again.'
+            else:
+                return payload['sub']
+        except jwt.ExpiredSignatureError:
+            return "Signature expired. Please log in again."
+        except jwt.InvalidTokenError:
+            return "Invalid token. Please log in again."

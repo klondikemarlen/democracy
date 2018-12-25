@@ -1,3 +1,5 @@
+from sqlalchemy.exc import DatabaseError
+
 from tenacity import db
 
 convention = {
@@ -15,4 +17,32 @@ db.Model.metadata.naming_convention = convention
 class Base(db.Model):
     __abstract__ = True
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    # auto-increments by default
+    id = db.Column(db.Integer, primary_key=True)
+
+    # Thanks to https://chase-seibert.github.io/blog/2016/03/31/flask-sqlalchemy-sessionless.html
+    def save(self):
+        db.session.add(self)
+        self._flush()
+        return self
+
+    def update(self, **kwargs):
+        for attr, value in kwargs.items():
+            setattr(self, attr, value)
+        return self.save()
+
+    def delete(self):
+        db.session.delete(self)
+        self._flush()
+
+    def _flush(self):
+        try:
+            db.session.flush()
+        except DatabaseError:
+            db.session.rollback()
+            raise
+
+
+# Allows direct access the the query from Base.
+# Not needed when using Flask-SQLAlchemy
+# Base.query = db.session.query_property()
