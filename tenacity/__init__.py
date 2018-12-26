@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 if 'live' in socket.gethostname():  # The server name will change.
     app.config.from_object('config.ProductionConfig')
-    print("Running ProductionConfig")
+    app.logger.info("Running ProductionConfig")
 else:
     app.config.from_object('config.DevelopmentConfig')
 
