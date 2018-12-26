@@ -1,10 +1,10 @@
 # Tenacity [a.k.a. 10-ant-city]
 A web based interactive democracy platform.
 
-Live at at (though still pre-Alpha): https://tenacity.pythonanywhere.com/static/login.html
+Live at at (though still pre-Alpha): https://tenacity.pythonanywhere.com/static/login.html<br>
 Frontend repository located at: https://github.com/klondikemarlen/tenacity-frontend
 
-Recently migrated from https://democracy.pythonanywhere.com/static/login.html.
+> Recently migrated from https://democracy.pythonanywhere.com/static/login.html.
 
 For more information see the [Wiki](https://github.com/klondikemarlen/tenacity/wiki)
 
